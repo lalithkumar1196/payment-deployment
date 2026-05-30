@@ -1,6 +1,6 @@
-name: CD Pipeline
+name: Image Promotion
 
-run-name: New Deployment on ${{ inputs.TEST }} | ${{ inputs.IMAGE }}
+run-name: Promote ${{ inputs.IMAGE }} to ${{ inputs.TEST }}
 
 on:
   workflow_dispatch:
