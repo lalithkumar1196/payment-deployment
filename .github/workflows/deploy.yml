@@ -28,3 +28,34 @@ on:
           - regression
           - uat
           - release
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Deployment Repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Show Inputs
+        run: |
+          echo "TEST=${{ inputs.TEST }}"
+          echo "IMAGE=${{ inputs.IMAGE }}"
+
+      - name: Update Helm Values
+        run: |
+          cd envs/${{ inputs.TEST }}
+
+          sed -i "s|tag:.*|tag: ${{ inputs.IMAGE }}|g" values.yaml
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add .
+          git commit -m "New Deployment on ${{ inputs.TEST }} | ${{ inputs.IMAGE }}" || echo "No changes"
+
+          git push origin main
