@@ -2,7 +2,7 @@ wezvapaymentapp:
   wezvapaymentapp:
     repository:
       image: 081654307023.dkr.ecr.ap-south-1.amazonaws.com/wezvatechpayment
-      tag: rel13
+      tag: rel14
 paymentSvc:
   ports:
   - nodePort: 30000
