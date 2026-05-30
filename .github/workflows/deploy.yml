@@ -47,6 +47,23 @@ jobs:
           ref: main
           token: ${{ secrets.GH_PAT }}
 
+      # Debug Inputs
+      - name: Debug Inputs
+        run: |
+          echo "TEST='${{ inputs.TEST }}'"
+          echo "IMAGE='${{ inputs.IMAGE }}'"
+          echo "REPO='${{ inputs.REPO }}'"
+          echo "ECRURL='${{ inputs.ECRURL }}'"
+
+      # Debug Repository Structure
+      - name: Debug Repository Structure
+        run: |
+          pwd
+          ls -la
+          echo "----- envs -----"
+          ls -la envs
+          echo "----- values files -----"
+          find envs -name values.yaml
       # -----------------------------
       # Update values.yaml
       # -----------------------------
