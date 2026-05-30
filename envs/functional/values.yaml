@@ -1,6 +1,6 @@
 wezvapaymentapp:
   wezvapaymentapp:
-    image:
+    repository:
       image: 081654307023.dkr.ecr.ap-south-1.amazonaws.com/wezvatechpayment
       tag: rel13
 paymentSvc:
