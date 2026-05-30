@@ -1,0 +1,27 @@
+name: Functional Deployment
+
+run-name: ${{ github.event.head_commit.message }}
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'envs/functional/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Deployment Repo
+        uses: actions/checkout@v4
+
+      - name: Show Commit Details
+        run: |
+          echo "Commit Message: ${{ github.event.head_commit.message }}"
+
+      - name: Functional Deployment Triggered
+        run: |
+          echo "Deploying Functional Environment"
+          echo "ArgoCD will detect the change and sync automatically"
