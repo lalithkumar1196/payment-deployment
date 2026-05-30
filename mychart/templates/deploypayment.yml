@@ -30,7 +30,7 @@ spec:
               name: {{ include "mychart.fullname" . }}-mysql-creds
         - name: KUBERNETES_CLUSTER_DOMAIN
           value: {{ quote .Values.kubernetesClusterDomain }}
-        image: {{ .Values.wezvapaymentapp.wezvapaymentapp.image.repository }}:{{ .Values.wezvapaymentapp.wezvapaymentapp.image.tag
+        image: {{ .Values.wezvapaymentapp.wezvapaymentapp.repository.image }}:{{ .Values.wezvapaymentapp.wezvapaymentapp.repository.tag | default .Chart.AppVersion }}
           | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.wezvapaymentapp.wezvapaymentapp.imagePullPolicy }}
         livenessProbe:
